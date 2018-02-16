@@ -30,8 +30,9 @@ for filename in args.files:
             if len(entity) == 0: continue
             start = e.start_char
             end = e.end_char            
-            while ( start > 0 and len(re.sub('[\s+]', ' ', text[start:e.end_char]).strip().split()) < concordance_context): start = start - 1
+            while ( start > 0 and len(re.sub('[\s+]', ' ', text[start:e.end_char]).strip().split()) < concordance_context + 1): start = start - 1
             while ( end < len(text) and len(re.sub('[\s+]', ' ', text[e.end_char:end]).strip().split()) < concordance_context + 1 ): end = end + 1
+            if start < e.start_char: start = start + 1
             if end > e.end_char: end = end - 1
             label = e.label_
             concordance = re.sub('[\s+]', ' ', text[start:end]).strip()
