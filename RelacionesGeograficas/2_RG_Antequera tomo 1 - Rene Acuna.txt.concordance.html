@@ -3,9 +3,10 @@
     <head>
         <title></title>
         <meta charset='UTF-8'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
 		<script src="../list.min.js"></script>
 		<script>
-			var options = { valueNames: [ 'entity', 'type' ], pagination: true};
+			var options = { valueNames: [ 'entity', 'type' ], page: 3, pagination: true};
 			var userList = new List('concordances', options);
 		</script>
     </head>
@@ -15,16 +16,16 @@
   <button class="sort" data-sort="name">Sort</button>
   <ul class="list">
     <li>
-	  <p>ndice de contenido</p>
-	  <p class="entity">Legal  Mapa</p>
-	  <p class="type">[PER]</p>
-	  <p>Contenido  Siglas y abreviaturas  Prólogo</p>
+	  <span>ndice de contenido</span>
+      <span class="entity">Legal  Mapa</span>
+	  <span class="type">[PER]</span>
+	  <span>Contenido  Siglas y abreviaturas  Prólogo</span>
     </li>
     <li>
-	  <p>ontenido  Legal  Mapa  Contenido</p>
-	  <p class="entity">Siglas</p>
-	  <p class="type">[LOC]</p>
-	  <p>y abreviaturas  Prólogo  Instrucción y</p>
+	  <span>ontenido  Legal  Mapa  Contenido</span>
+      <span class="entity">Siglas</span>
+	  <span class="type">[LOC]</span>
+	  <span>y abreviaturas  Prólogo  Instrucción y</span>
     </li>
   </ul>
   <ul class="pagination"></ul>
