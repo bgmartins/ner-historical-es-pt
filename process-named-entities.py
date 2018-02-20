@@ -117,6 +117,14 @@ for filename in args.files:
     elif args.concordance == 1:
         text = str(document.text)
         text_file = open(filename + ".concordance.html", "w",encoding='utf8')
+        text_file.write("<html>")
+        text_file.write("<head><meta charset='UTF-8' /></head>")
+        text_file.write("<body>")
+        text_file.write("<div id='concordances'>")
+        text_file.write("<input class='search' placeholder='Search' />")
+        text_file.write("<button class='sort' data-sort='entity'>Sort</button>")
+        text_file.write("<button class='sort' data-sort='type'>Sort</button>")
+        text_file.write("<ul style='list-style: none;' class='list'>")
         for e in document.ents:
             entity = re.sub('[\s+]', ' ', e.string).strip()
             if len(entity) == 0: continue
@@ -127,8 +135,25 @@ for filename in args.files:
             if start < e.start_char: start = start + 1
             if end > e.end_char: end = end - 1
             label = e.label_
-            concordance = re.sub('[\s+]', ' ', text[start:end]).strip()
-            text_file.write(label + "\t\t" + entity + "\t\t" + concordance + "\n")
+            concordance1 = re.sub('[\s+]', ' ', text[start:e.start_char]).strip()
+            concordance2 = re.sub('[\s+]', ' ', text[e.end_char:end]).strip()
+            text_file.write("<li>")
+            text_file.write("<span style='float:left; width:25%;'>" + concordance1 + "</span>")
+            text_file.write("<span style='float:left; width:25%; border: thin solid black' class='entity'>" + entity + "</span>")
+            text_file.write("<span style='float:left; width:25%; border: thin solid black' class='type'>" + label + "</span>")
+            text_file.write("<span style='float:left; width:25%;'>" + concordance2 + "</span>")
+            text_file.write("</li>")
+        text_file.write("</ul>")
+        text_file.write("<br/>")
+        text_file.write("<ul style='list-style: none;' class='pagination'></ul>")
+        text_file.write("</div>")
+        text_file.write("<script src='../list.min.js'></script>")
+        text_file.write("<script type='text/javascript'>")
+        text_file.write("var opts = { valueNames: [ 'entity', 'type' ], page: 25, pagination: true };")
+        text_file.write("var userList = new List('concordances', opts);")
+        text_file.write("</script>")
+        text_file.write("</body>")
+        text_file.write("</html>")
         text_file.close()
 #    else:
 #        labels = set([w.label_ for w in document.ents]) 
