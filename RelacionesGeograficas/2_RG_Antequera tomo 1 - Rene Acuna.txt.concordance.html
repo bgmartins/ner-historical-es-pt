@@ -1,37 +1,36 @@
-<!DOCTYPE html>
 <html>
 <head>
-        	<title></title>
-        	<meta charset='UTF-8' />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+<title></title>
+<meta charset='UTF-8' />
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js'></script> 
 </head>
 <body style="font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; padding: 4rem 2rem;">
-<div id="concordances">
-  <input class="search" placeholder="Search" />
-  <button class="sort" data-sort="entity">Sort</button>
-  <button class="sort" data-sort="type">Sort</button>
-  <ul style="list-style: none;" class="list">
+<div id='concordances'>
+  <input class='search' placeholder='Search' />
+  <button class='sort' data-sort='entity'>Sort</button>
+  <button class='sort' data-sort='type'>Sort</button>
+  <ul style='list-style: none;' class='pagination'></ul>
+  <ul style='list-style: none;' class='list'>
     <li>
-	  <p style="text-align: center">
-	  <span style="float:left; width:35%;">ndice de contenido</span>
-          <span style="float:left; width:15%; border: thin solid black" class="entity">Legal Mapa</span>
-	  <span style="float:left; width:5%; border: thin solid black" class="type">[PER]</span>
-	  <span style="float:left; width:35%;">Contenido  Siglas y abreviaturas  Prólogo</span>
+	  <p style='text-align: center'>
+	  <span style='float:left; width:35%;'>ndice de contenido</span>
+          <span style='float:left; width:20%; border: thin solid black' class='entity'>Legal Mapa</span>
+	  <span style='float:left; width:5%; border: thin solid black' class='type'>[PER]</span>
+	  <span style='float:left; width:35%;'>Contenido  Siglas y abreviaturas  Prólogo</span>
 	  </p>
     </li>
     <li>
-	  <p style="text-align: center">
-	  <span style="float:left; width:35%;">ontenido  Legal  Mapa  Contenido</span>
-          <span style="float:left; width:15%; border: thin solid black" class="entity">Siglas</span>
-	  <span style="float:left; width:5%; border: thin solid black" class="type">[LOC]</span>
-	  <span style="float:left; width:35%;">y abreviaturas  Prólogo  Instrucción y</span>
+	  <p style='text-align: center'>
+	  <span style='float:left; width:35%;'>ontenido  Legal  Mapa  Contenido</span>
+          <span style='float:left; width:20%; border: thin solid black' class='entity'>Siglas</span>
+	  <span style='float:left; width:5%; border: thin solid black' class='type'>[LOC]</span>
+	  <span style='float:left; width:35%;'>y abreviaturas  Prólogo  Instrucción y</span>
 	  </p>
     </li>
   </ul>
-  <p><ul style="list-style: none;" class="pagination"></ul></p>
 </div>
-<script src="../list.min.js"></script>
-<script type="text/javascript">
+<script src='../list.min.js'></script>
+<script type='text/javascript'>
 	var opts = { valueNames: [ 'entity', 'type' ], page: 25, pagination: true };
 	var userList = new List('concordances', opts);
 </script>
