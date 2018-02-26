@@ -52,6 +52,8 @@ class Entity(object):
 
 args = parser.parse_args()
 nlp = spacy.load('es')
+entity = Entity(nlp, keywords_list=['example entity 1', 'example entity 2'], label='MISC')
+nlp.add_pipe(entity, last=True)
 
 concordance_context = 5
 
@@ -144,7 +146,6 @@ def semistructured_statements(doc, entity, cue='be', ignore_entity_case=True, mi
             if min_frag_i == max_cue_i - 1: min_frag_i += 1
             the_fragment = doc[min_frag_i: max_frag_i + 1]
             yield (the_entity, the_cue, the_fragment)
-
 
 for filename in args.files:
     document = open(filename,encoding='utf8').read()
