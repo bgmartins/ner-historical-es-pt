@@ -9,6 +9,7 @@ from spacy import displacy
 from spacy.tokens import Doc, Span, Token
 from spacy.lang.es import Spanish
 from flashtext import KeywordProcessor
+from cytoolz import itertoolz
 
 parser = argparse.ArgumentParser(description='Process text files and recognize named entities.')
 parser.add_argument('files', metavar='FILE', type=str, nargs='+', help='an input file to be processed')
@@ -70,7 +71,7 @@ def noun_chunks(doc, drop_determiners=True, min_freq=1):
     if hasattr(doc, 'spacy_doc'): ncs = doc.spacy_doc.noun_chunks
     else: ncs = doc.noun_chunks
     if drop_determiners is True:
-        ncs = (nc if nc[0].pos != DET else nc[1:] for nc in ncs)
+        ncs = (nc if nc[0].pos != spacy.parts_of_speech.DET else nc[1:] for nc in ncs)
     if min_freq > 1:
         ncs = list(ncs)
         freqs = itertoolz.frequencies(nc.lower_ for nc in ncs)
@@ -105,7 +106,7 @@ def semistructured_statements(doc, entity, cue='be', ignore_entity_case=True, mi
     n_cue_toks = len(cue_toks)
     def is_good_last_tok(tok):
         if tok.is_punct: return False
-        if tok.pos in {CONJ, DET}: return False
+        if tok.pos in {spacy.parts_of_speech.CONJ, spacy.parts_of_speech.DET}: return False
         return True
     for sent in doc.sents:
         for tok in sent:
